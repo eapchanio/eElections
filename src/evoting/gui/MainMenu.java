@@ -5,17 +5,12 @@
  */
 package evoting.gui;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 /**
  *
  * @author Administrator
  */
 public class MainMenu extends javax.swing.JFrame {
-    private static EntityManager em;  
-    /**
+     /**
      * Creates new form MainMenu
      */
     public MainMenu() {
@@ -35,6 +30,7 @@ public class MainMenu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        jFrame1 = new javax.swing.JFrame();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -46,6 +42,17 @@ public class MainMenu extends javax.swing.JFrame {
         jMenu2.setText("jMenu2");
 
         jMenu3.setText("jMenu3");
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,14 +136,7 @@ public class MainMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //στο αρχείο persistence.xml υπάρχει η εγγραφή <persistence-unit name="EVotingPU" transaction-type="RESOURCE_LOCAL">
-        //περνάμε την τιμή της ιδιότητας name σαν παράμετρο στη
-        //μέθοδο createEntityManagerFactory 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EVotingPU");
-        // Δημιουργία του Entity Manager
-        em = emf.createEntityManager();
-               
-        //em.getTransaction().begin();
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -146,6 +146,7 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

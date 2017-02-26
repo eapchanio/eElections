@@ -6,22 +6,23 @@
 package renderers;
 
 import java.awt.Component;
-import evoting.model.TblCandidate;
+import evoting.model.TblPoliticalParty;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
+
 /**
  *
- * @author Panagiotis
+ * @author Administrator
  */
-public class CandidateCompoBoxRenderer extends DefaultListCellRenderer{
+public class PoliticalPartyComboBoxRenderer extends DefaultListCellRenderer{
     
     @Override
     public Component getListCellRendererComponent(
     JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-        if (value instanceof TblCandidate){
-            TblCandidate b = (TblCandidate)value;
-            setText(b.getFldName()+"  "+b.getFldName());
+        if (value instanceof TblPoliticalParty){
+            TblPoliticalParty b = (TblPoliticalParty)value;
+            setText(b.getFldTitle());
         }
         return this;
     }
