@@ -2,14 +2,14 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="EVotingPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>evoting.model.TblElectoralPeriphery</class>
-    <class>evoting.model.TblCandidate</class>
-    <class>evoting.model.TblVote</class>
-    <class>evoting.model.TblPoliticalParty</class>
     <class>evoting.model.TblCandidate_1</class>
     <class>evoting.model.TblPoliticalParty_1</class>
     <class>evoting.model.TblElectoralPeriphery_1</class>
     <class>evoting.model.TblVote_1</class>
+    <class>evoting.gui.model.TblCandidate</class>
+    <class>evoting.gui.model.TblPoliticalParty</class>
+    <class>evoting.gui.model.TblElectoralPeriphery</class>
+    <class>evoting.gui.model.TblVote</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/evotingDB"/>
       <property name="javax.persistence.jdbc.user" value="admin1"/>
