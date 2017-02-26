@@ -52,6 +52,7 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         politicalPartyComboBoxRenderer1.setText("politicalPartyComboBoxRenderer1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Διαχείριση υποψηφίων");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/112.png"))); // NOI18N
         jButton1.setText("Δημιουργία υποψηφίου");
