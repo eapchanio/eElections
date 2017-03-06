@@ -31,6 +31,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         entityManager1 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("EVotingPU").createEntityManager();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -46,7 +47,12 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/team.png"))); // NOI18N
         jLabel1.setText("ΠΛΗ24 ΑΘ-3  Δημήτρης, Παναγιώτης, Άρης, Τάσος");
         jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel1.setRequestFocusEnabled(false);
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/elections_board.jpg"))); // NOI18N
+        jLabel2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         jMenu4.setText("ΕΠΙΛΟΓΕΣ ΗΛΕΚΤΡΟΝΙΚΗΣ ΨΗΦΟΦΟΡΙΑΣ");
         jMenu4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -84,20 +90,18 @@ public class MainMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(51, 51, 51))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(250, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jLabel1.getAccessibleContext().setAccessibleName("  ΠΛΗ24 ΑΘ-3  Δημήτρης, Παναγιώτης, Άρης, Τάσος");
+        jLabel1.getAccessibleContext().setAccessibleName(" ΠΛΗ24 ΑΘ-3  Δημήτρης, Παναγιώτης, Άρης, Τάσος");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -153,6 +157,7 @@ public class MainMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager entityManager1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;

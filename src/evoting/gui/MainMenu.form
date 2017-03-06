@@ -85,19 +85,16 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Component id="jLabel1" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-          </Group>
+          <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="250" max="32767" attributes="0"/>
-              <Component id="jLabel1" max="-2" attributes="0"/>
+              <Component id="jLabel2" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="87" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -121,11 +118,25 @@
             <BevelBorder/>
           </Border>
         </Property>
+        <Property name="horizontalTextPosition" type="int" value="4"/>
         <Property name="requestFocusEnabled" type="boolean" value="false"/>
       </Properties>
       <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="  &#x3a0;&#x39b;&#x397;24 &#x391;&#x398;-3  &#x394;&#x3b7;&#x3bc;&#x3ae;&#x3c4;&#x3c1;&#x3b7;&#x3c2;, &#x3a0;&#x3b1;&#x3bd;&#x3b1;&#x3b3;&#x3b9;&#x3ce;&#x3c4;&#x3b7;&#x3c2;, &#x386;&#x3c1;&#x3b7;&#x3c2;, &#x3a4;&#x3ac;&#x3c3;&#x3bf;&#x3c2;"/>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=" &#x3a0;&#x39b;&#x397;24 &#x391;&#x398;-3  &#x394;&#x3b7;&#x3bc;&#x3ae;&#x3c4;&#x3c1;&#x3b7;&#x3c2;, &#x3a0;&#x3b1;&#x3bd;&#x3b1;&#x3b3;&#x3b9;&#x3ce;&#x3c4;&#x3b7;&#x3c2;, &#x386;&#x3c1;&#x3b7;&#x3c2;, &#x3a4;&#x3ac;&#x3c3;&#x3bf;&#x3c2;"/>
       </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/icons/elections_board.jpg"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.CompoundBorderInfo">
+            <CompoundBorder/>
+          </Border>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
