@@ -21,8 +21,8 @@ public class PeripheryComboBoxRenderer extends DefaultListCellRenderer{
     JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
         if (value instanceof TblElectoralPeriphery){
-            TblElectoralPeriphery a = (TblElectoralPeriphery)value;
-            setText(a.getFldName());
+            TblElectoralPeriphery mec = (TblElectoralPeriphery) value;
+            setText(mec.getFldName());
         }
         return this;
     }

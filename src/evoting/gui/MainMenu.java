@@ -10,12 +10,14 @@ package evoting.gui;
  * @author Administrator
  */
 public class MainMenu extends javax.swing.JFrame {
-     /**
+    private DiaxeirisiYpopcifion diaxeirisiYpopcifion;
+    /**
      * Creates new form MainMenu
      */
     public MainMenu() {
         
         initComponents();
+        this.entityManager1.getTransaction();
     }
 
     /**
@@ -27,38 +29,29 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jFrame1 = new javax.swing.JFrame();
+        entityManager1 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("EVotingPU").createEntityManager();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
-        jMenu1.setText("jMenu1");
-
-        jMenu2.setText("jMenu2");
-
-        jMenu3.setText("jMenu3");
-
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("eElections");
 
-        jMenu4.setText("ΕΠΙΛΟΓΕΣ ΗΛΕΚΤΡΟΝΙΚΗΣ ΨΗΦΟΦΟΡΙΑΣ");
+        jLabel1.setBackground(java.awt.Color.lightGray);
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/team.png"))); // NOI18N
+        jLabel1.setText("ΠΛΗ24 ΑΘ-3  Δημήτρης, Παναγιώτης, Άρης, Τάσος");
+        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel1.setRequestFocusEnabled(false);
 
+        jMenu4.setText("ΕΠΙΛΟΓΕΣ ΗΛΕΚΤΡΟΝΙΚΗΣ ΨΗΦΟΦΟΡΙΑΣ");
+        jMenu4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        jMenuItem1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ypopcifioi.jpg"))); // NOI18N
         jMenuItem1.setText("Διαχείριση υποψηφίων");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +61,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem1);
 
+        jMenuItem2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/telika_apotelesmata.jpg"))); // NOI18N
         jMenuItem2.setText("Προσομοιωτής εκλογικής διαδικασίας");
         jMenu4.add(jMenuItem2);
@@ -76,6 +70,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Exit_icon_18.png"))); // NOI18N
         jMenu5.setText("ΕΞΟΔΟΣ ");
+        jMenu5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu5MouseClicked(evt);
@@ -89,12 +84,20 @@ public class MainMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(250, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
+
+        jLabel1.getAccessibleContext().setAccessibleName("  ΠΛΗ24 ΑΘ-3  Δημήτρης, Παναγιώτης, Άρης, Τάσος");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -107,8 +110,9 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu5MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        DiaxeirisiYpopcifion df =new DiaxeirisiYpopcifion();
-        df.setVisible(true);
+        this.diaxeirisiYpopcifion = new DiaxeirisiYpopcifion(this);
+        this.diaxeirisiYpopcifion.setVisible(true);
+        this.setEnabled(false); 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -147,10 +151,8 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFrame jFrame1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.persistence.EntityManager entityManager1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;

@@ -21,8 +21,8 @@ public class PoliticalPartyComboBoxRenderer extends DefaultListCellRenderer{
     JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
         if (value instanceof TblPoliticalParty){
-            TblPoliticalParty b = (TblPoliticalParty)value;
-            setText(b.getFldTitle());
+            TblPoliticalParty mec = (TblPoliticalParty)value;
+            setText(mec.getFldTitle());
         }
         return this;
     }
