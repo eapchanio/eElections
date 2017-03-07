@@ -5,12 +5,16 @@
  */
 package evoting.gui;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 /**
  *
  * @author Administrator
  */
 public class MainMenu extends javax.swing.JFrame {
     private DiaxeirisiYpopcifion diaxeirisiYpopcifion;
+    private static EntityManager em; 
     /**
      * Creates new form MainMenu
      */
@@ -154,7 +158,12 @@ public class MainMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+        //στο αρχείο persistence.xml υπάρχει η εγγραφή <persistence-unit name="EVotingPU" transaction-type="RESOURCE_LOCAL">
+        //περνάμε την τιμή της ιδιότητας name σαν παράμετρο στη
+        //μέθοδο createEntityManagerFactory 
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EVotingPU");
+        // Δημιουργία του Entity Manager
+        em = emf.createEntityManager();   
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
