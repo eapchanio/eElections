@@ -50,7 +50,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/team.png"))); // NOI18N
-        jLabel1.setText("ΠΛΗ24 ΑΘ-3  Δημήτρης, Παναγιώτης, Άρης, Τάσος");
+        jLabel1.setText("ΠΛΗ24 ΑΘ-3  Δημήτρης, Άρης, Τάσος, Παναγιώτης,");
         jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel1.setRequestFocusEnabled(false);
