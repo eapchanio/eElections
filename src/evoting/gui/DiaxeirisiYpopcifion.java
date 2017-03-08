@@ -24,7 +24,7 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     DiaxeirisiYpopcifion(MainMenu mainMenu) {
         initComponents();
         this.mainMenu = mainMenu;
-        this.entityManager1.getTransaction().begin();  
+        this.entityManager.getTransaction().begin();  
     }
 
     /**
@@ -37,9 +37,11 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        entityManager1 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("EVotingPU").createEntityManager();
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("EVotingPU").createEntityManager();
         peripheryComboBoxRenderer1 = new renderers.PeripheryComboBoxRenderer();
         politicalPartyComboBoxRenderer1 = new renderers.PoliticalPartyComboBoxRenderer();
+        tblElectoralPeriphery1 = new evoting.model.TblElectoralPeriphery();
+        tblPoliticalParty1 = new evoting.model.TblPoliticalParty();
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -83,8 +85,6 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, politicalPartyComboBoxRenderer1, org.jdesktop.beansbinding.ObjectProperty.create(), jComboBox1, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
         bindingGroup.addBinding(binding);
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, politicalPartyComboBoxRenderer1, org.jdesktop.beansbinding.ObjectProperty.create(), jComboBox1, org.jdesktop.beansbinding.BeanProperty.create("renderer"));
@@ -92,8 +92,6 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Κόμμα");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, peripheryComboBoxRenderer1, org.jdesktop.beansbinding.ObjectProperty.create(), jComboBox2, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
         bindingGroup.addBinding(binding);
@@ -201,10 +199,10 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
     public EntityManager getEntityManager1() {
-        return entityManager1;
+        return entityManager;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.persistence.EntityManager entityManager1;
+    private javax.persistence.EntityManager entityManager;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -220,6 +218,8 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private renderers.PeripheryComboBoxRenderer peripheryComboBoxRenderer1;
     private renderers.PoliticalPartyComboBoxRenderer politicalPartyComboBoxRenderer1;
+    private evoting.model.TblElectoralPeriphery tblElectoralPeriphery1;
+    private evoting.model.TblPoliticalParty tblPoliticalParty1;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

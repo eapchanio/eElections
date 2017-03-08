@@ -2,14 +2,18 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.persistence.EntityManager" name="entityManager1">
+    <Component class="javax.persistence.EntityManager" name="entityManager">
       <Properties>
-        <Property name="persistenceUnit" type="java.lang.String" value="pu"/>
+        <Property name="persistenceUnit" type="java.lang.String" value="EVotingPU"/>
       </Properties>
     </Component>
     <Component class="renderers.PeripheryComboBoxRenderer" name="peripheryComboBoxRenderer1">
     </Component>
     <Component class="renderers.PoliticalPartyComboBoxRenderer" name="politicalPartyComboBoxRenderer1">
+    </Component>
+    <Component class="evoting.model.TblElectoralPeriphery" name="tblElectoralPeriphery1">
+    </Component>
+    <Component class="evoting.model.TblPoliticalParty" name="tblPoliticalParty1">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -181,16 +185,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox1">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
-        </Property>
-      </Properties>
       <BindingProperties>
         <BindingProperty name="selectedItem" source="politicalPartyComboBoxRenderer1" target="jComboBox1" targetPath="selectedItem" updateStrategy="0" immediately="false"/>
         <BindingProperty name="renderer" source="politicalPartyComboBoxRenderer1" target="jComboBox1" targetPath="renderer" updateStrategy="0" immediately="false"/>
@@ -203,16 +197,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox2">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
-        </Property>
-      </Properties>
       <BindingProperties>
         <BindingProperty name="selectedItem" source="peripheryComboBoxRenderer1" target="jComboBox2" targetPath="selectedItem" updateStrategy="0" immediately="false"/>
         <BindingProperty name="renderer" source="peripheryComboBoxRenderer1" target="jComboBox2" targetPath="renderer" updateStrategy="0" immediately="false"/>
