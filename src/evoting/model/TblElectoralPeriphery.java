@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Administrator
  */
 @Entity
-@Table(name = "TBL_ELECTORAL_PERIPHERY")
+@Table(name = "TBL_ELECTORAL_PERIPHERY", catalog = "", schema = "ADMIN1")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TblElectoralPeriphery.findAll", query = "SELECT t FROM TblElectoralPeriphery t"),

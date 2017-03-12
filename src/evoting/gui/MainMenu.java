@@ -5,23 +5,20 @@
  */
 package evoting.gui;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 /**
  *
  * @author Administrator
  */
 public class MainMenu extends javax.swing.JFrame {
-    private DiaxeirisiYpopcifion diaxeirisiYpopcifion;
-    private static EntityManager em; 
+    private DiaxeirisiYpopcifion diaxeirisiYpopcifion; 
     /**
      * Creates new form MainMenu
      */
     public MainMenu() {
         
         initComponents();
-        this.entityManager.getTransaction();
+        this.entityManager1.getTransaction();
     }
 
     /**
@@ -33,7 +30,7 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("EVotingPU").createEntityManager();
+        entityManager1 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("EVotingPU").createEntityManager();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -127,9 +124,10 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu5MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        this.diaxeirisiYpopcifion = new DiaxeirisiYpopcifion(this);
-        this.diaxeirisiYpopcifion.setVisible(true);
-        this.setEnabled(false); 
+    new DiaxeirisiYpopcifion().setVisible(true);     
+//this.diaxeirisiYpopcifion = new DiaxeirisiYpopcifion(this);
+        //this.diaxeirisiYpopcifion.setVisible(true);
+        this.setEnabled(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -161,9 +159,7 @@ public class MainMenu extends javax.swing.JFrame {
         //στο αρχείο persistence.xml υπάρχει η εγγραφή <persistence-unit name="EVotingPU" transaction-type="RESOURCE_LOCAL">
         //περνάμε την τιμή της ιδιότητας name σαν παράμετρο στη
         //μέθοδο createEntityManagerFactory 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EVotingPU");
-        // Δημιουργία του Entity Manager
-        em = emf.createEntityManager();   
+      
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -173,7 +169,7 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.persistence.EntityManager entityManager;
+    private javax.persistence.EntityManager entityManager1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
