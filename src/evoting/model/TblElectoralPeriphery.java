@@ -87,7 +87,7 @@ public class TblElectoralPeriphery implements Serializable {
 
     public void setFldRegisteredCitizensCount(Integer fldRegisteredCitizensCount) {
         this.fldRegisteredCitizensCount = fldRegisteredCitizensCount;
-    }
+        }
 
     public Integer getFldSeatsCount() {
         return fldSeatsCount;
@@ -95,7 +95,7 @@ public class TblElectoralPeriphery implements Serializable {
 
     public void setFldSeatsCount(Integer fldSeatsCount) {
         this.fldSeatsCount = fldSeatsCount;
-    }
+        }
 
     @XmlTransient
     public Collection<TblCandidate> getTblCandidateCollection() {
@@ -139,5 +139,5 @@ public class TblElectoralPeriphery implements Serializable {
     public String toString() {
         return "evoting.model.TblElectoralPeriphery[ pkElectoralPeripheryId=" + pkElectoralPeripheryId + " ]";
     }
-    
+
 }

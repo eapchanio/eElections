@@ -13,6 +13,8 @@ import javax.persistence.EntityManager;
  */
 public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     private MainMenu mainMenu;  
+    private String EklogikiPerifereia;
+   
     /**
      * Creates new form DiaxeirisiYpopcifion
      */
@@ -33,45 +35,25 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         entityManager1 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("EVotingPU").createEntityManager();
-        peripheryComboBoxRenderer1 = new renderers.PeripheryComboBoxRenderer();
-        query1 = java.beans.Beans.isDesignTime() ? null : entityManager1.createQuery("select a from TblElectoralPeriphery a where a.pkElectoralPeripheryId is not null");
-        list1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(query1.getResultList());
-        tblElectoralPeriphery1 = new evoting.model.TblElectoralPeriphery();
-        tblPoliticalParty1 = new evoting.model.TblPoliticalParty();
-        politicalPartyComboBoxRenderer1 = new renderers.PoliticalPartyComboBoxRenderer();
-        query2 = java.beans.Beans.isDesignTime() ? null : entityManager1.createQuery("SELECT b FROM TblPoliticalParty b WHERE b.pkPartyId is not null");
-        list2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(query2.getResultList());
         tblCandidateQuery = java.beans.Beans.isDesignTime() ? null : entityManager1.createQuery("SELECT t FROM TblCandidate t");
         tblCandidateList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(tblCandidateQuery.getResultList());
         tblCandidate1 = new evoting.model.TblCandidate();
-        jComboBox1 = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-
-        politicalPartyComboBoxRenderer1.setText("politicalPartyComboBoxRenderer1");
+        jComboBox1 = new javax.swing.JComboBox();
+        jComboBox2 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Διαχείριση υποψηφίων");
 
-        jComboBox1.setRenderer(peripheryComboBoxRenderer1);
-
-        org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, list1, jComboBox1);
-        bindingGroup.addBinding(jComboBoxBinding);
-
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Εκλογική περιφέρεια");
         jLabel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jComboBox2.setRenderer(politicalPartyComboBoxRenderer1);
-
-        jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, list2, jComboBox2);
-        bindingGroup.addBinding(jComboBoxBinding);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -124,6 +106,17 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         jLabel3.setText("Υποψήφιοι Κόμματος Επιλεγμένης Εκλογικής Περιφέρειας");
         jLabel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Α_ΑΘΗΝΩΝ", "Β_ΑΘΗΝΩΝ", "ΝΟΜΟΥ_ΑΤΤΙΚΗΣ", "Α_ΠΕΙΡΑΙΩΣ", "Β_ΠΕΙΡΑΙΩΣ", "ΝΟΜΟΥ ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ", "ΝΟΜΟΥ ΑΡΓΟΛΙΔΟΣ", "ΝΟΜΟΥ ΑΡΚΑΔΙΑΣ", "ΝΟΜΟΥ ΑΡΤΗΣ", "ΝΟΜΟΥ ΑΧΑΪΑΣ", "ΝΟΜΟΥ ΒΟΙΩΤΙΑΣ", "ΝΟΜΟΥ_ΓΡΕΒΕΝΩΝ", "ΝΟΜΟΥ_ΔΡΑΜΑΣ", "ΝΟΜΟΥ_ΔΩΔΕΚΑΝΗΣΟΥ", "ΝΟΜΟΥ_ΕΒΡΟΥ", "ΝΟΜΟΥ_ΕΥΒΟΙΑΣ", "ΝΟΜΟΥ_ΕΥΡΥΤΑΝΙΑΣ", "ΝΟΜΟΥ_ΖΑΚΥΝΘΟΥ", "ΝΟΜΟΥ_ΗΛΕΙΑΣ", "ΝΟΜΟΥ_ΗΜΑΘΙΑΣ", "ΝΟΜΟΥ_ΗΡΑΚΛΕΙΟΥ", "ΝΟΜΟΥ_ΘΕΣΠΡΩΤΙΑΣ", "Α_ΘΕΣΣΑΛΟΝΙΚΗΣ", "Β_ΘΕΣΣΑΛΟΝΙΚΗΣ", "ΝΟΜΟΥ_ΙΩΑΝΝΙΝΩΝ", "ΝΟΜΟΥ_ΚΑΒΑΛΑΣ", "ΝΟΜΟΥ_ΚΑΡΔΙΤΣΗΣ", "ΝΟΜΟΥ_ΚΑΣΤΟΡΙΑΣ", "ΝΟΜΟΥ_ΚΕΡΚΥΡΑΣ", "ΝΟΜΟΥ_ΚΕΦΑΛΛΗΝΙΑΣ", "ΝΟΜΟΥ_ΚΙΛΚΙΣ", "ΝΟΜΟΥ_ΚΟΖΑΝΗΣ ", "ΝΟΜΟΥ_ΚΟΡΙΝΘΙΑΣ ", "ΝΟΜΟΥ_ΚΥΚΛΑΔΩΝ ", "ΝΟΜΟΥ_ΛΑΚΩΝΙΑΣ", "ΝΟΜΟΥ_ΛΑΡΙΣΗΣ ", "ΝΟΜΟΥ_ΛΑΣΙΘΙΟΥ ", "ΝΟΜΟΥ_ΛΕΣΒΟΥ", "ΝΟΜΟΥ_ΛΕΥΚΑΔΟΣ ", "ΝΟΜΟΥ_ΜΑΓΝΗΣΙΑΣ ", "ΝΟΜΟΥ_ΜΕΣΣΗΝΙΑΣ", "ΝΟΜΟΥ_ΞΑΝΘΗΣ ", "ΝΟΜΟΥ_ΠΕΛΛΗΣ", "ΝΟΜΟΥ_ΠΙΕΡΙΑΣ", "ΝΟΜΟΥ_ΠΡΕΒΕΖΗΣ ", "ΝΟΜΟΥ_ΡΕΘΥΜΝΗΣ ", "ΝΟΜΟΥ_ΡΟΔΟΠΗΣ", "ΝΟΜΟΥ_ΣΑΜΟΥ", "ΝΟΜΟΥ_ΣΕΡΡΩΝ ", "ΝΟΜΟΥ_ΤΡΙΚΑΛΩΝ", "ΝΟΜΟΥ_ΦΘΙΩΤΙΔΟΣ ", "ΝΟΜΟΥ_ΦΛΩΡΙΝΗΣ ", "ΝΟΜΟΥ_ΦΩΚΙΔΟΣ", "ΝΟΜΟΥ_ ΧΑΛΚΙΔΙΚΗΣ ", "ΝΟΜΟΥ_ΧΑΝΙΩΝ", "ΝΟΜΟΥ_ΧΙΟΥ", " " }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ΕΝΩΣΗ_ΕΛΛΗΝΩΝ", "ΔΙΚΑΙΟΣΥΝΗ", "ΕΛΕΥΘΕΡΙΑ_ΠΟΛΙΤΩΝ", "ΔΗΜΟΚΡΑΤΙΚΟΣ_ΑΝΕΜΟΣ", "ΔΙΕΞΟΔΟΣ", " " }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,11 +129,11 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
@@ -150,16 +143,15 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox1)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2))
+                        .addComponent(jLabel2)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,6 +167,11 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
        this.mainMenu.setEnabled(true);
        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+  EklogikiPerifereia = (String) jComboBox1.getSelectedItem(); 
+  System.out.println(EklogikiPerifereia);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
   public EntityManager getEntityManager1() {
         return entityManager1;
@@ -192,17 +189,9 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private java.util.List<evoting.model.TblElectoralPeriphery> list1;
-    private java.util.List<evoting.model.TblPoliticalParty> list2;
-    private renderers.PeripheryComboBoxRenderer peripheryComboBoxRenderer1;
-    private renderers.PoliticalPartyComboBoxRenderer politicalPartyComboBoxRenderer1;
-    private javax.persistence.Query query1;
-    private javax.persistence.Query query2;
     private evoting.model.TblCandidate tblCandidate1;
     private java.util.List<evoting.model.TblCandidate> tblCandidateList;
     private javax.persistence.Query tblCandidateQuery;
-    private evoting.model.TblElectoralPeriphery tblElectoralPeriphery1;
-    private evoting.model.TblPoliticalParty tblPoliticalParty1;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
