@@ -5,8 +5,6 @@
  */
 package evoting.model;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -21,7 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -36,10 +33,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TblCandidate.findAll", query = "SELECT t FROM TblCandidate t"),
     @NamedQuery(name = "TblCandidate.findByPkCandidateId", query = "SELECT t FROM TblCandidate t WHERE t.pkCandidateId = :pkCandidateId"),
     @NamedQuery(name = "TblCandidate.findByFldSurname", query = "SELECT t FROM TblCandidate t WHERE t.fldSurname = :fldSurname"),
-    @NamedQuery(name = "TblCandidate.findByFldName", query = "SELECT t FROM TblCandidate t WHERE t.fldName = :fldName")})
+    @NamedQuery(name = "TblCandidate.findByFldName", query = "SELECT t FROM TblCandidate t WHERE t.fldName = :fldName"),
+    @NamedQuery(name = "TblCandidate.findPolicalPartyAndPeriphery", query = "SELECT t FROM TblCandidate t WHERE t.fkElectoralPeripheryId =:fkElectoralPeripheryId and t.fkPoliticalPartyId = :fkPoliticalPartyId")})
 public class TblCandidate implements Serializable {
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,9 +76,7 @@ public class TblCandidate implements Serializable {
     }
 
     public void setPkCandidateId(Long pkCandidateId) {
-        Long oldPkCandidateId = this.pkCandidateId;
         this.pkCandidateId = pkCandidateId;
-        changeSupport.firePropertyChange("pkCandidateId", oldPkCandidateId, pkCandidateId);
     }
 
     public String getFldSurname() {
@@ -89,9 +84,7 @@ public class TblCandidate implements Serializable {
     }
 
     public void setFldSurname(String fldSurname) {
-        String oldFldSurname = this.fldSurname;
         this.fldSurname = fldSurname;
-        changeSupport.firePropertyChange("fldSurname", oldFldSurname, fldSurname);
     }
 
     public String getFldName() {
@@ -99,9 +92,7 @@ public class TblCandidate implements Serializable {
     }
 
     public void setFldName(String fldName) {
-        String oldFldName = this.fldName;
         this.fldName = fldName;
-        changeSupport.firePropertyChange("fldName", oldFldName, fldName);
     }
 
     public TblElectoralPeriphery getFkElectoralPeripheryId() {
@@ -109,9 +100,7 @@ public class TblCandidate implements Serializable {
     }
 
     public void setFkElectoralPeripheryId(TblElectoralPeriphery fkElectoralPeripheryId) {
-        TblElectoralPeriphery oldFkElectoralPeripheryId = this.fkElectoralPeripheryId;
         this.fkElectoralPeripheryId = fkElectoralPeripheryId;
-        changeSupport.firePropertyChange("fkElectoralPeripheryId", oldFkElectoralPeripheryId, fkElectoralPeripheryId);
     }
 
     public TblPoliticalParty getFkPoliticalPartyId() {
@@ -119,9 +108,8 @@ public class TblCandidate implements Serializable {
     }
 
     public void setFkPoliticalPartyId(TblPoliticalParty fkPoliticalPartyId) {
-        TblPoliticalParty oldFkPoliticalPartyId = this.fkPoliticalPartyId;
         this.fkPoliticalPartyId = fkPoliticalPartyId;
-        changeSupport.firePropertyChange("fkPoliticalPartyId", oldFkPoliticalPartyId, fkPoliticalPartyId);
+        
     }
 
     @XmlTransient
@@ -157,13 +145,4 @@ public class TblCandidate implements Serializable {
     public String toString() {
         return "evoting.model.TblCandidate[ pkCandidateId=" + pkCandidateId + " ]";
     }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
-    }
-    
 }

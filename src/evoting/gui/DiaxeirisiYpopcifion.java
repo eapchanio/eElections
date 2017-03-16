@@ -5,25 +5,82 @@
  */
 package evoting.gui;
 
+import evoting.model.TblCandidate;
+import evoting.model.TblElectoralPeriphery;
+import evoting.model.TblPoliticalParty;
+import java.util.List;
 import javax.persistence.EntityManager;
-
+import javax.persistence.TypedQuery;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Administrator
  */
 public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     private MainMenu mainMenu;  
-    private String EklogikiPerifereia;
-   
+    public String name;
+    public String surname;
+    private String SynKomma;
+    private String EklPerifereia;
+    public DefaultTableModel tmodel;
     /**
      * Creates new form DiaxeirisiYpopcifion
      */
     public DiaxeirisiYpopcifion(MainMenu mainMenu) {
         initComponents();
         this.mainMenu = mainMenu;
-        this.entityManager1.getTransaction().begin();   
+        this.entityManager1.getTransaction().begin(); 
+        tmodel = new DefaultTableModel();
     }
+      
+    public void drowTableRow()
+    {
+        Object[] row = new Object[2];
+        row[0] = surname;
+        row[1] = name;
+        tmodel.addRow((Object[])row);
+        jTable1.setModel(tmodel);
+    
+    }
+    
+    private void drowTableData(String a,String b )
+    {
+        Object[] columns = {"ΕΠΙΘΕΤΟ","ΟΝΟΜΑ",};
 
+        tmodel.setColumnIdentifiers(columns);
+        for (int i = 0; i <  tmodel.getRowCount(); i++) 
+        {
+            tmodel.removeRow(i);
+        }
+
+        TypedQuery<TblElectoralPeriphery> findTblElectoralPeriphery = entityManager1.createNamedQuery("TblElectoralPeriphery.findByFldName", TblElectoralPeriphery.class); 
+        findTblElectoralPeriphery.setParameter("fldName", EklPerifereia);
+        
+        List<TblElectoralPeriphery> TblElectoralPeripheryResults = findTblElectoralPeriphery.getResultList(); 
+        
+        
+        TypedQuery<TblPoliticalParty> findTblPoliticalParty = entityManager1.createNamedQuery("TblPoliticalParty.findByFldTitle", TblPoliticalParty.class);
+        findTblPoliticalParty.setParameter("fldTitle", SynKomma);
+        List<TblPoliticalParty> TblPoliticalPartyResults = findTblPoliticalParty.getResultList(); 
+        
+   
+        TypedQuery<TblCandidate> findTblCandidateQuery = entityManager1.createNamedQuery("TblCandidate.findPolicalPartyAndPeriphery", TblCandidate.class); 
+        findTblCandidateQuery.setParameter("fkElectoralPeripheryId", TblElectoralPeripheryResults.get(0));
+        findTblCandidateQuery.setParameter("fkPoliticalPartyId", TblPoliticalPartyResults.get(0));
+        List<TblCandidate> TblCandidateResults = findTblCandidateQuery.getResultList(); 
+        
+        Object[] row = new Object[2];
+        
+        for (int i = 0; i < TblCandidateResults.size(); i++) 
+        {
+            
+            row[0] =(String)TblCandidateResults.get(i).getFldSurname();
+            row[1] =(String)TblCandidateResults.get(i).getFldName();
+            tmodel.addRow((Object[])row);
+        }
+        
+         jTable1.setModel(tmodel);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,21 +89,17 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         entityManager1 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("EVotingPU").createEntityManager();
-        tblCandidateQuery = java.beans.Beans.isDesignTime() ? null : entityManager1.createQuery("SELECT t FROM TblCandidate t");
-        tblCandidateList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(tblCandidateQuery.getResultList());
-        tblCandidate1 = new evoting.model.TblCandidate();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jComboBox2 = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Διαχείριση υποψηφίων");
@@ -88,21 +141,7 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
-        jTable1.setName(""); // NOI18N
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCandidateList, jTable1);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${fldSurname}"));
-        columnBinding.setColumnName("ΕΠΙΘΕΤΟ");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${fldName}"));
-        columnBinding.setColumnName("ΟΝΟΜΑ");
-        columnBinding.setColumnClass(String.class);
-        bindingGroup.addBinding(jTableBinding);
-        jTableBinding.bind();
-        jScrollPane1.setViewportView(jTable1);
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("Υποψήφιοι Κόμματος Επιλεγμένης Εκλογικής Περιφέρειας");
         jLabel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -116,6 +155,21 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
 
         jComboBox2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ΕΝΩΣΗ_ΕΛΛΗΝΩΝ", "ΔΙΚΑΙΟΣΥΝΗ", "ΕΛΕΥΘΕΡΙΑ_ΠΟΛΙΤΩΝ", "ΔΗΜΟΚΡΑΤΙΚΟΣ_ΑΝΕΜΟΣ", "ΔΙΕΞΟΔΟΣ", " " }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ΕΠΩΝΥΜΟ", "ΟΝΟΜΑ"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,11 +186,9 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -145,20 +197,19 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBox1)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -169,9 +220,14 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-  EklogikiPerifereia = (String) jComboBox1.getSelectedItem(); 
-  System.out.println(EklogikiPerifereia);
+    EklPerifereia = (String) jComboBox1.getSelectedItem(); 
+    System.out.println(EklPerifereia);
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    SynKomma = (String) jComboBox2.getSelectedItem();
+    drowTableData(EklPerifereia, SynKomma);      
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
   public EntityManager getEntityManager1() {
         return entityManager1;
@@ -189,9 +245,5 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private evoting.model.TblCandidate tblCandidate1;
-    private java.util.List<evoting.model.TblCandidate> tblCandidateList;
-    private javax.persistence.Query tblCandidateQuery;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
