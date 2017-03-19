@@ -138,6 +138,11 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/118.png"))); // NOI18N
         jButton3.setText("ΑΦΑΙΡΕΣΗ ΥΠΟΨΗΦΙΟΥ");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ypopcifios_delete.png"))); // NOI18N
@@ -152,22 +157,20 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jButton3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addContainerGap()
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -201,7 +204,7 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ΔΗΜΙΟΥΡΓΙΑ ΥΠΟΨΗΦΙΟΥ ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "   ΔΗΜΙΟΥΡΓΙΑ ΥΠΟΨΗΦΙΟΥ ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("ΕΠΩΝΥΜΟ");
@@ -308,6 +311,8 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel2.getAccessibleContext().setAccessibleDescription("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -341,6 +346,34 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         name = onoma;
         drowTableRow();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+          int row = jTable1.getSelectedRow();
+    
+        // Αν δεν υπάρχει επιλεγμένη γραμμή επιστρέφουμε
+        if (row < 0) {
+            return;
+        }
+        String Surname = (String)tmodel.getValueAt(row, 0);
+        String name = (String)tmodel.getValueAt(row, 1);
+        TypedQuery<TblCandidate> findTblCandidateQuery = entityManager1.createNamedQuery("TblCandidate.findByFldSurname", TblCandidate.class); 
+        findTblCandidateQuery.setParameter("fldSurname", Surname);
+        List<TblCandidate> TblCandidateResults = findTblCandidateQuery.getResultList(); 
+        
+        for (int i = 0; i < TblCandidateResults.size(); i++) 
+        {
+        
+           try {
+               entityManager1.getTransaction().begin();
+               entityManager1.remove(TblCandidateResults.get(i));
+               entityManager1.getTransaction().commit();
+               tmodel.removeRow(i);
+           } catch (Exception e) {
+               entityManager1.getTransaction().rollback();
+           }
+        }
+         jTable1.setModel(tmodel);   // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
   public EntityManager getEntityManager1() {
         return entityManager1;

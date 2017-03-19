@@ -10,7 +10,8 @@ package evoting.gui;
  * @author Administrator
  */
 public class MainMenu extends javax.swing.JFrame {
-    private DiaxeirisiYpopcifion diaxeirisiYpopcifion; 
+    private DiaxeirisiYpopcifion diaxeirisiYpopcifion;
+    private DiadikasiaEklogis diadikasiaEklogis;
     /**
      * Creates new form MainMenu
      */
@@ -108,6 +109,11 @@ public class MainMenu extends javax.swing.JFrame {
         jMenuItem2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/telika_apotelesmata.jpg"))); // NOI18N
         jMenuItem2.setText("Προσομοιωτής εκλογικής διαδικασίας");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem2);
 
         jMenuBar1.add(jMenu4);
@@ -151,10 +157,12 @@ public class MainMenu extends javax.swing.JFrame {
     this.setEnabled(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+      this.diadikasiaEklogis = new DiadikasiaEklogis(this);
+      this.diadikasiaEklogis.setVisible(true);
+      this.setEnabled(false);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+  public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -188,7 +196,6 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager entityManager1;
     private javax.swing.JLabel jLabel1;
