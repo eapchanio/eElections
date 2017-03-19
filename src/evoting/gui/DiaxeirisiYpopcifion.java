@@ -23,6 +23,8 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     private String SynKomma;
     private String EklPerifereia;
     public DefaultTableModel tmodel;
+    private String eponimo;
+    private String onoma;
     /**
      * Creates new form DiaxeirisiYpopcifion
      */
@@ -43,9 +45,9 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     
     }
     
-    private void drowTableData(String a,String b )
+    private void drowTableData(String a,String b)
     {
-        Object[] columns = {"ΕΠΙΘΕΤΟ","ΟΝΟΜΑ",};
+        Object[] columns = {"ΕΠΩΝΥΜΟ","ΟΝΟΜΑ",};
 
         tmodel.setColumnIdentifiers(columns);
         for (int i = 0; i <  tmodel.getRowCount(); i++) 
@@ -95,13 +97,21 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jComboBox2 = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Διαχείριση υποψηφίων");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -116,6 +126,7 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/go-back_32.png"))); // NOI18N
         jButton1.setText("ΕΠΙΣΤΡΟΦΗ ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -124,21 +135,40 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/118.png"))); // NOI18N
+        jButton3.setText("ΑΦΑΙΡΕΣΗ ΥΠΟΨΗΦΙΟΥ");
+
+        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ypopcifios_delete.png"))); // NOI18N
+        jButton4.setText("ΔΙΑΓΡΑΦΗ ΥΠΟΨΗΦΙΩΝ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jButton1)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -146,7 +176,7 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         jLabel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Α_ΑΘΗΝΩΝ", "Β_ΑΘΗΝΩΝ", "ΝΟΜΟΥ_ΑΤΤΙΚΗΣ", "Α_ΠΕΙΡΑΙΩΣ", "Β_ΠΕΙΡΑΙΩΣ", "ΝΟΜΟΥ ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ", "ΝΟΜΟΥ ΑΡΓΟΛΙΔΟΣ", "ΝΟΜΟΥ ΑΡΚΑΔΙΑΣ", "ΝΟΜΟΥ ΑΡΤΗΣ", "ΝΟΜΟΥ ΑΧΑΪΑΣ", "ΝΟΜΟΥ ΒΟΙΩΤΙΑΣ", "ΝΟΜΟΥ_ΓΡΕΒΕΝΩΝ", "ΝΟΜΟΥ_ΔΡΑΜΑΣ", "ΝΟΜΟΥ_ΔΩΔΕΚΑΝΗΣΟΥ", "ΝΟΜΟΥ_ΕΒΡΟΥ", "ΝΟΜΟΥ_ΕΥΒΟΙΑΣ", "ΝΟΜΟΥ_ΕΥΡΥΤΑΝΙΑΣ", "ΝΟΜΟΥ_ΖΑΚΥΝΘΟΥ", "ΝΟΜΟΥ_ΗΛΕΙΑΣ", "ΝΟΜΟΥ_ΗΜΑΘΙΑΣ", "ΝΟΜΟΥ_ΗΡΑΚΛΕΙΟΥ", "ΝΟΜΟΥ_ΘΕΣΠΡΩΤΙΑΣ", "Α_ΘΕΣΣΑΛΟΝΙΚΗΣ", "Β_ΘΕΣΣΑΛΟΝΙΚΗΣ", "ΝΟΜΟΥ_ΙΩΑΝΝΙΝΩΝ", "ΝΟΜΟΥ_ΚΑΒΑΛΑΣ", "ΝΟΜΟΥ_ΚΑΡΔΙΤΣΗΣ", "ΝΟΜΟΥ_ΚΑΣΤΟΡΙΑΣ", "ΝΟΜΟΥ_ΚΕΡΚΥΡΑΣ", "ΝΟΜΟΥ_ΚΕΦΑΛΛΗΝΙΑΣ", "ΝΟΜΟΥ_ΚΙΛΚΙΣ", "ΝΟΜΟΥ_ΚΟΖΑΝΗΣ ", "ΝΟΜΟΥ_ΚΟΡΙΝΘΙΑΣ ", "ΝΟΜΟΥ_ΚΥΚΛΑΔΩΝ ", "ΝΟΜΟΥ_ΛΑΚΩΝΙΑΣ", "ΝΟΜΟΥ_ΛΑΡΙΣΗΣ ", "ΝΟΜΟΥ_ΛΑΣΙΘΙΟΥ ", "ΝΟΜΟΥ_ΛΕΣΒΟΥ", "ΝΟΜΟΥ_ΛΕΥΚΑΔΟΣ ", "ΝΟΜΟΥ_ΜΑΓΝΗΣΙΑΣ ", "ΝΟΜΟΥ_ΜΕΣΣΗΝΙΑΣ", "ΝΟΜΟΥ_ΞΑΝΘΗΣ ", "ΝΟΜΟΥ_ΠΕΛΛΗΣ", "ΝΟΜΟΥ_ΠΙΕΡΙΑΣ", "ΝΟΜΟΥ_ΠΡΕΒΕΖΗΣ ", "ΝΟΜΟΥ_ΡΕΘΥΜΝΗΣ ", "ΝΟΜΟΥ_ΡΟΔΟΠΗΣ", "ΝΟΜΟΥ_ΣΑΜΟΥ", "ΝΟΜΟΥ_ΣΕΡΡΩΝ ", "ΝΟΜΟΥ_ΤΡΙΚΑΛΩΝ", "ΝΟΜΟΥ_ΦΘΙΩΤΙΔΟΣ ", "ΝΟΜΟΥ_ΦΛΩΡΙΝΗΣ ", "ΝΟΜΟΥ_ΦΩΚΙΔΟΣ", "ΝΟΜΟΥ_ ΧΑΛΚΙΔΙΚΗΣ ", "ΝΟΜΟΥ_ΧΑΝΙΩΝ", "ΝΟΜΟΥ_ΧΙΟΥ", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Α_ΑΘΗΝΩΝ", "Β_ΑΘΗΝΩΝ", "ΝΟΜΟΥ_ΑΤΤΙΚΗΣ", "Α_ΠΕΙΡΑΙΩΣ", "Β_ΠΕΙΡΑΙΩΣ", "ΝΟΜΟΥ_ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ", "ΝΟΜΟΥ_ΑΡΓΟΛΙΔΟΣ", "ΝΟΜΟΥ_ΑΡΚΑΔΙΑΣ", "ΝΟΜΟΥ_ΑΡΤΗΣ", "ΝΟΜΟΥ_ΑΧΑΪΑΣ", "ΝΟΜΟΥ_ΒΟΙΩΤΙΑΣ", "ΝΟΜΟΥ_ΓΡΕΒΕΝΩΝ", "ΝΟΜΟΥ_ΔΡΑΜΑΣ", "ΝΟΜΟΥ_ΔΩΔΕΚΑΝΗΣΟΥ", "ΝΟΜΟΥ_ΕΒΡΟΥ", "ΝΟΜΟΥ_ΕΥΒΟΙΑΣ", "ΝΟΜΟΥ_ΕΥΡΥΤΑΝΙΑΣ", "ΝΟΜΟΥ_ΖΑΚΥΝΘΟΥ", "ΝΟΜΟΥ_ΗΛΕΙΑΣ", "ΝΟΜΟΥ_ΗΜΑΘΙΑΣ", "ΝΟΜΟΥ_ΗΡΑΚΛΕΙΟΥ", "ΝΟΜΟΥ_ΘΕΣΠΡΩΤΙΑΣ", "Α_ΘΕΣΣΑΛΟΝΙΚΗΣ", "Β_ΘΕΣΣΑΛΟΝΙΚΗΣ", "ΝΟΜΟΥ_ΙΩΑΝΝΙΝΩΝ", "ΝΟΜΟΥ_ΚΑΒΑΛΑΣ", "ΝΟΜΟΥ_ΚΑΡΔΙΤΣΗΣ", "ΝΟΜΟΥ_ΚΑΣΤΟΡΙΑΣ", "ΝΟΜΟΥ_ΚΕΡΚΥΡΑΣ", "ΝΟΜΟΥ_ΚΕΦΑΛΛΗΝΙΑΣ", "ΝΟΜΟΥ_ΚΙΛΚΙΣ", "ΝΟΜΟΥ_ΚΟΖΑΝΗΣ ", "ΝΟΜΟΥ_ΚΟΡΙΝΘΙΑΣ ", "ΝΟΜΟΥ_ΚΥΚΛΑΔΩΝ ", "ΝΟΜΟΥ_ΛΑΚΩΝΙΑΣ", "ΝΟΜΟΥ_ΛΑΡΙΣΗΣ ", "ΝΟΜΟΥ_ΛΑΣΙΘΙΟΥ ", "ΝΟΜΟΥ_ΛΕΣΒΟΥ", "ΝΟΜΟΥ_ΛΕΥΚΑΔΟΣ ", "ΝΟΜΟΥ_ΜΑΓΝΗΣΙΑΣ ", "ΝΟΜΟΥ_ΜΕΣΣΗΝΙΑΣ", "ΝΟΜΟΥ_ΞΑΝΘΗΣ ", "ΝΟΜΟΥ_ΠΕΛΛΗΣ", "ΝΟΜΟΥ_ΠΙΕΡΙΑΣ", "ΝΟΜΟΥ_ΠΡΕΒΕΖΗΣ ", "ΝΟΜΟΥ_ΡΕΘΥΜΝΗΣ ", "ΝΟΜΟΥ_ΡΟΔΟΠΗΣ", "ΝΟΜΟΥ_ΣΑΜΟΥ", "ΝΟΜΟΥ_ΣΕΡΡΩΝ ", "ΝΟΜΟΥ_ΤΡΙΚΑΛΩΝ", "ΝΟΜΟΥ_ΦΘΙΩΤΙΔΟΣ ", "ΝΟΜΟΥ_ΦΛΩΡΙΝΗΣ ", "ΝΟΜΟΥ_ΦΩΚΙΔΟΣ", "ΝΟΜΟΥ_ΧΑΛΚΙΔΙΚΗΣ ", "ΝΟΜΟΥ_ΧΑΝΙΩΝ", "ΝΟΜΟΥ_ΧΙΟΥ", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -171,15 +201,78 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ΔΗΜΙΟΥΡΓΙΑ ΥΠΟΨΗΦΙΟΥ ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel4.setText("ΕΠΩΝΥΜΟ");
+        jLabel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel5.setText("ΟΝΟΜΑ");
+        jLabel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/112.png"))); // NOI18N
+        jButton2.setText("ΠΡΟΣΘΗΚΗ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField1)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton2))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -187,8 +280,10 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -205,8 +300,10 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -229,6 +326,22 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     drowTableData(EklPerifereia, SynKomma);      
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+       eponimo = jTextField1.getText();
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+       onoma = jTextField2.getText();
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        eponimo = (String)jTextField1.getText();
+        onoma = (String)jTextField2.getText();
+        surname = eponimo;
+        name = onoma;
+        drowTableRow();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
   public EntityManager getEntityManager1() {
         return entityManager1;
     }   
@@ -237,13 +350,21 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager entityManager1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
