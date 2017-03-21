@@ -25,13 +25,14 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     public DefaultTableModel tmodel;
     private String eponimo;
     private String onoma;
+        
     /**
      * Creates new form DiaxeirisiYpopcifion
      */
     public DiaxeirisiYpopcifion(MainMenu mainMenu) {
         initComponents();
         this.mainMenu = mainMenu;
-        this.entityManager1.getTransaction().begin(); 
+        this.entityManager1.getTransaction();
         tmodel = new DefaultTableModel();
     }
       
@@ -99,6 +100,7 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jComboBox2 = new javax.swing.JComboBox();
@@ -127,7 +129,7 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/go-back_32.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/28.png"))); // NOI18N
         jButton1.setText("ΕΠΙΣΤΡΟΦΗ ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +138,7 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/118.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ypopcifios_delete.png"))); // NOI18N
         jButton3.setText("ΑΦΑΙΡΕΣΗ ΥΠΟΨΗΦΙΟΥ");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,8 +147,22 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ypopcifios_delete.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/118.png"))); // NOI18N
         jButton4.setText("ΔΙΑΓΡΑΦΗ ΥΠΟΨΗΦΙΩΝ");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ypopcifios_add.png"))); // NOI18N
+        jButton5.setText("ΑΠΟΘΗΚΕΥΣΗ");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -158,15 +174,21 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton5)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
@@ -263,8 +285,9 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton2))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -375,10 +398,49 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
          jTable1.setModel(tmodel);   // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+          
+      // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    TypedQuery<TblElectoralPeriphery> findTblElectoralPeriphery =  entityManager1.createNamedQuery("TblElectoralPeriphery.findByFldName", TblElectoralPeriphery.class); 
+        findTblElectoralPeriphery.setParameter("fldName", EklPerifereia);
+        
+        List<TblElectoralPeriphery> TblElectoralPeripheryResults = findTblElectoralPeriphery.getResultList(); 
+        
+        
+        TypedQuery<TblPoliticalParty> findTblPoliticalParty =  entityManager1.createNamedQuery("TblPoliticalParty.findByFldTitle", TblPoliticalParty.class);
+        findTblPoliticalParty.setParameter("fldTitle", SynKomma);
+        List<TblPoliticalParty> TblPoliticalPartyResults = findTblPoliticalParty.getResultList(); 
+     
+
+        TypedQuery<TblCandidate> findTblCandidateQuery = entityManager1.createNamedQuery("TblCandidate.findPolicalPartyAndPeriphery", TblCandidate.class); 
+        findTblCandidateQuery.setParameter("fkElectoralPeripheryId", TblElectoralPeripheryResults.get(0));
+        findTblCandidateQuery.setParameter("fkPoliticalPartyId", TblPoliticalPartyResults.get(0));
+        List<TblCandidate> TblCandidateResults = findTblCandidateQuery.getResultList(); 
+        
+        for (int i = 0; i < TblCandidateResults.size(); i++) 
+        {
+        
+           try {
+               entityManager1.getTransaction().begin();
+               entityManager1.remove(TblCandidateResults.get(i));
+               entityManager1.getTransaction().commit();
+               tmodel.removeRow(i);
+           } catch (Exception e) {
+               entityManager1.getTransaction().rollback();
+           }
+        }
+         jTable1.setModel(tmodel);
+                                           
+    }//GEN-LAST:event_jButton4ActionPerformed
+    
   public EntityManager getEntityManager1() {
         return entityManager1;
     }   
     
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager entityManager1;
@@ -386,6 +448,7 @@ public class DiaxeirisiYpopcifion extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;

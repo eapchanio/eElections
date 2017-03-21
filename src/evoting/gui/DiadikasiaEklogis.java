@@ -5,12 +5,21 @@
  */
 package evoting.gui;
 
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Administrator
  */
 public class DiadikasiaEklogis extends javax.swing.JFrame {
     private MainMenu mainMenu;  
+    private DiaxeirisiApotelesmaton diaxeirisiApotelesmaton;
+    private double Simetoxi;
+    private double Leuko;
+    private double Akyro;
     /**
      * Creates new form DiadikasiaEklogis
      */
@@ -18,7 +27,52 @@ public class DiadikasiaEklogis extends javax.swing.JFrame {
         initComponents();
         this.mainMenu = mainMenu;
     }
+    public double getSimetoxi()
+    {
+        return Simetoxi;
+    }
+    
+    public double getLeuko()
+    {
+        return Leuko;
+    }
+    
+    
+    public double getAkyro()
+    {
+        return Akyro;
+    }
+    public File saveXML()
+    {
+        File selectedFile = null;
+        final JFileChooser fc = new JFileChooser();
+        fc.setDialogTitle("Επιλογή αρχείου αποθήκευσης XML");
+        FileNameExtensionFilter filter;
+        filter = new FileNameExtensionFilter("Αρχεία XML", "xml");
+        fc.setFileFilter(filter);
 
+        int returnVal = fc.showSaveDialog(this);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+            selectedFile = fc.getSelectedFile();
+
+          
+            if (!selectedFile.getAbsolutePath().endsWith(".xml")) {
+                selectedFile = new File(selectedFile.getAbsolutePath() + ".xml");
+            }
+           
+            if (selectedFile.exists()) {
+                int result = JOptionPane.showConfirmDialog(this,
+                        "Το όνομα αρχείου υπάρχει ήδη.\nΘέλετε να αντικατασταθεί?",
+                        "Το αρχείο υπάρχει ήδη", JOptionPane.YES_NO_OPTION);
+                if (result != JOptionPane.YES_OPTION) {
+                    return null;
+                }
+            }
+        }
+        return selectedFile;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,6 +180,11 @@ public class DiadikasiaEklogis extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/44.png"))); // NOI18N
         jButton2.setText("ΕΝΑΡΞΗ ΠΡΟΣΟΜΟΙΩΣΗΣ");
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/periferia.jpg"))); // NOI18N
@@ -211,6 +270,12 @@ public class DiadikasiaEklogis extends javax.swing.JFrame {
     this.mainMenu.setEnabled(true);
     dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      this.diaxeirisiApotelesmaton = new DiaxeirisiApotelesmaton(this);
+      this.diaxeirisiApotelesmaton.setVisible(true);
+      this.setEnabled(false);      // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
