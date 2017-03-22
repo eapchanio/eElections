@@ -5,7 +5,14 @@
  */
 package evoting.gui;
 
+import elemensSystem.CreatePsifos;
+import elemensSystem.ThreadControl;
+import elemensSystem.XMLElectionResults;
+import evoting.model.TblElectoralPeriphery;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.TypedQuery;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -82,6 +89,7 @@ public class DiadikasiaEklogis extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        entityManager1 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("EVotingPU").createEntityManager();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -190,11 +198,21 @@ public class DiadikasiaEklogis extends javax.swing.JFrame {
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/periferia.jpg"))); // NOI18N
         jButton3.setText("ΕΜΦΑΝΙΣΗ ΣΤΑΤΙΣΤΙΚΩΝ");
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/emul_xml48.png"))); // NOI18N
         jButton4.setText("ΕΞΑΓΩΓΗ ΑΠΟΤΕΛΕΣΜΑΤΩΝ ΣΕ XML");
         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -268,16 +286,81 @@ public class DiadikasiaEklogis extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     this.mainMenu.setEnabled(true);
+    if (ThreadControl.WORKERLIST != null) {
+                for (CreatePsifos ew : ThreadControl.WORKERLIST) {
+                    ew.stop();
+                }
+            }
     dispose();
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      this.diaxeirisiApotelesmaton = new DiaxeirisiApotelesmaton(this);
-      this.diaxeirisiApotelesmaton.setVisible(true);
-      this.setEnabled(false);      // TODO add your handling code here:
+     // this.diaxeirisiApotelesmaton = new DiaxeirisiApotelesmaton(this);
+    //  this.diaxeirisiApotelesmaton.setVisible(true);
+    //  this.setEnabled(false);   
+        // TODO add your handling code here:
+        Simetoxi = Double.parseDouble(jTextField1.getText());
+        Leuko = Double.parseDouble(jTextField2.getText());
+        Akyro = Double.parseDouble(jTextField3.getText());          
+        TypedQuery<TblElectoralPeriphery> findTblElectoralPeriphery = entityManager1.createNamedQuery("TblElectoralPeriphery.findAll", TblElectoralPeriphery.class);
+
+        List<TblElectoralPeriphery> TblElectoralPeripheryResults = findTblElectoralPeriphery.getResultList(); 
+
+       // Αν δεν έχουν δημιουργηθεί τα threads των εργαζομένων
+       // τα δημιουργούμε και τα κρατάμε σε λίστα για μελλοντική αναφορά
+       if (ThreadControl.WORKERLIST == null)
+           ThreadControl.WORKERLIST = new ArrayList();
+
+
+       for (int i=0; i< TblElectoralPeripheryResults.size(); i++) {
+           boolean exists = false;
+
+           for (CreatePsifos ew : ThreadControl.WORKERLIST) {
+
+              if (ew.getTblElectoralPeriphery().getPkElectoralPeripheryId() == TblElectoralPeripheryResults.get(i).getPkElectoralPeripheryId()) {
+                  exists = true;
+                  ew.setTblElectoralPeriphery(TblElectoralPeripheryResults.get(i));
+                  if (!ew.isTerminated()) ew.resume();
+                  break;
+              }
+
+           }
+
+           // Αν δεν υπάρχει δημιουργούμε ένα νέο thread
+           if (!exists) {
+
+               CreatePsifos worker = new CreatePsifos(TblElectoralPeripheryResults.get(i), this, entityManager1);
+               ThreadControl.WORKERLIST.add(worker);
+               worker.execute();
+          }
+
+
+      } 
+                                            
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+     this.diaxeirisiApotelesmaton = new DiaxeirisiApotelesmaton(this);
+     this.diaxeirisiApotelesmaton.setVisible(true);
+     this.setEnabled(false); 
+     if (ThreadControl.WORKERLIST != null) {
+                for (CreatePsifos ew : ThreadControl.WORKERLIST) {
+                    ew.stop();
+                }
+            }
+          dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+     XMLElectionResults XMLER= new XMLElectionResults(saveXML(), this.entityManager1);
+     XMLER.toXML();
+                                           
+       // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.persistence.EntityManager entityManager1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

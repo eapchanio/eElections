@@ -38,7 +38,7 @@ public class DiaxeirisiApotelesmaton extends javax.swing.JFrame {
       
     
 
-    public void fillTableRow()
+    public void DrowTableRow()
     {
         Object[] row = new Object[2];
         row[0] = name;
